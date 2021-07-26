@@ -1,8 +1,6 @@
 // Require node_modules
 const express = require('express')
 const exphdbs = require('express-handlebars')
-const methodOverride = require('method-override')
-const routes = require('./routes')
 
 // Define server info
 const PORT = process.env.PORT || 3000
@@ -17,11 +15,22 @@ app.set('view engine', 'hbs')
 // Setting body-parser
 app.use(express.urlencoded({ extended: true }))
 
-// Setting middleware: method-override
-app.use(methodOverride('_method'))
+// Handle Request & Response
+app.get('/', (req, res) => {
+  res.send('列出全部 Todo')
+})
 
-// Setting Express router and import request into router
-app.use(routes)
+app.get('/new', (req, res) => {
+  res.send('新增 Todo 頁面')
+})
+
+app.get('/:id', (req, res) => {
+  res.send('顯示一筆 Todo')
+})
+
+app.post('/', (req, res) => {
+  res.send('新增一筆  Todo')
+})
 
 // Start and listen on the express server
 app.listen(PORT, () => {
