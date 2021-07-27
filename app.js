@@ -6,7 +6,7 @@ const requestDuration = require('./middlewares/requestDuration')
 // Define server info
 const PORT = process.env.PORT || 3000
 
-//Setting express
+// Setting express
 const app = express()
 
 // Setting express-handlebars
