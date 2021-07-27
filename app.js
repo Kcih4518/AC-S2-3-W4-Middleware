@@ -1,6 +1,7 @@
 // Require node_modules
 const express = require('express')
 const exphdbs = require('express-handlebars')
+const requestDuration = require('./middlewares/requestDuration')
 
 // Define server info
 const PORT = process.env.PORT || 3000
@@ -14,6 +15,9 @@ app.set('view engine', 'hbs')
 
 // Setting body-parser
 app.use(express.urlencoded({ extended: true }))
+
+// Middleware to get req
+app.use(requestDuration)
 
 // Handle Request & Response
 app.get('/', (req, res) => {
