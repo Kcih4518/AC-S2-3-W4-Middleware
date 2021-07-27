@@ -1,11 +1,11 @@
 # Middleware : requestDuration
 
-使用 Node.js + Express 建立的 middleware，用來記錄伺服器的請求紀錄。
+使用 Node.js + Express 建立的 middleware，用來記錄伺服器的請求紀錄與伺服器回應的時間。
 
 ```shell=bash
-YYYY-MM-DD HH:mm:ss | request_method from request_url
+YYYY-MM-DD HH:mm:ss | request_method from request_url | total time: duration_time
 
-2021-07-27 11:17:31 | GET from /
+2021-07-27 12:48:46 | POST from / | total time: 1ms
 ```
 
 ## Getting Started
@@ -30,12 +30,12 @@ YYYY-MM-DD HH:mm:ss | request_method from request_url
 
 ### Description
 
-伺服器會將請求進行記錄，log 格式與顯示如下:
+伺服器會將請求進行記錄並計算回應時，log 格式與顯示如下:
 
 ```bash
-YYYY-MM-DD HH:mm:ss | request_method from request_url
+YYYY-MM-DD HH:mm:ss | request_method from request_url | total time: duration_time
 
-2021-07-27 11:17:31 | GET from /
+2021-07-27 12:48:46 | POST from / | total time: 1ms
 ```
 
 ### Route Table
@@ -91,8 +91,8 @@ $ curl -X POST http://localhost:3000/
 ```bash
 $ cat logs/request.txt
 
-2021-07-27 11:44:41 | GET from /
-2021-07-27 11:44:43 | GET from /new
-2021-07-27 11:44:46 | GET from /123456
-2021-07-27 11:44:52 | POST from /
+2021-07-27 12:48:36 | GET from / | total time: 4ms
+2021-07-27 12:48:39 | GET from /new | total time: 0ms
+2021-07-27 12:48:42 | GET from /12345 | total time: 0ms
+2021-07-27 12:48:46 | POST from / | total time: 1ms
 ```
